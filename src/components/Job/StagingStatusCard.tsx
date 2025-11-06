@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Package, PhoneCall, Warehouse } from "lucide-react";
+import { motion } from "framer-motion";
+import { Package, PhoneCall } from "lucide-react";
 
 /* -------------------------------------------------
    Placeholder Staging Area Data
@@ -12,83 +13,132 @@ const stagingAreas = [
 ];
 
 /* -------------------------------------------------
-   Color Logic by Status
+   Color & Style Logic
 ---------------------------------------------------*/
-const getBoxColor = (status: string) => {
-    switch (status) {
-        case "Occupied":
-            return "bg-green-50 border-green-200";
-        case "Calling":
-            return "bg-amber-50 border-amber-200";
-        default:
-            return "bg-gray-50 border-gray-200";
-    }
-};
+const getBoxColor = (status: string) =>
+    status === "Occupied"
+        ? "bg-green-50 border-green-200"
+        : status === "Calling"
+            ? "bg-amber-50 border-amber-200"
+            : "bg-gray-50 border-gray-200";
 
-const getIconColor = (status: string) => {
-    switch (status) {
-        case "Occupied":
-            return "bg-green-500";
-        case "Calling":
-            return "bg-amber-500";
-        default:
-            return "bg-gray-300";
-    }
-};
+const getIconColor = (status: string) =>
+    status === "Occupied"
+        ? "bg-green-500"
+        : status === "Calling"
+            ? "bg-amber-500"
+            : "bg-gray-400";
 
-const getBadgeStyle = (status: string) => {
-    switch (status) {
-        case "Occupied":
-            return "bg-green-500 text-white";
-        case "Calling":
-            return "bg-amber-500 text-white";
-        default:
-            return "text-gray-500 border-gray-300";
-    }
+const getBadgeStyle = (status: string) =>
+    status === "Occupied"
+        ? "bg-green-500 text-white"
+        : status === "Calling"
+            ? "bg-amber-500 text-white"
+            : "text-gray-500 border-gray-300";
+
+/* -------------------------------------------------
+   Floating Z animation (for Empty)
+---------------------------------------------------*/
+const zzzFloat = {
+    animate: (delay: number) => ({
+        opacity: [0, 1, 0],
+        y: [0, -18, -35],
+        transition: { duration: 3, delay, repeat: Infinity, ease: "easeInOut" },
+    }),
 };
 
 /* -------------------------------------------------
-   Compact Component
+   Component
 ---------------------------------------------------*/
 export function StagingStatusCard() {
     return (
         <div className="w-full">
             <div className="flex flex-wrap gap-3 justify-between">
                 {stagingAreas.map((area) => (
-                    <div
+                    <motion.div
                         key={area.id}
                         className={`flex flex-col justify-between rounded-md border p-3 w-full sm:basis-[48%] md:basis-[23%] ${getBoxColor(
                             area.status
                         )}`}
+                        whileHover={{ scale: 1.03 }}
                     >
-                        {/* Header Row: icon + name + badge */}
+                        {/* Header: icon + name + badge */}
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div
-                                    className={`w-8 h-8 rounded-full flex items-center justify-center ${getIconColor(
+                                    className={`relative w-8 h-8 rounded-full flex items-center justify-center ${getIconColor(
                                         area.status
                                     )}`}
                                 >
+                                    {/* 🟢 Occupied → static */}
                                     {area.status === "Occupied" ? (
                                         <Package className="text-white w-4 h-4" />
                                     ) : area.status === "Calling" ? (
-                                        <PhoneCall className="text-white w-4 h-4" />
+                                        // 🟡 Calling → ringing animation
+                                        <motion.div
+                                            animate={{
+                                                scale: [1, 1.15, 1],
+                                                rotate: [0, 10, -10, 0],
+                                            }}
+                                            transition={{
+                                                duration: 1.2,
+                                                repeat: Infinity,
+                                                ease: "easeInOut",
+                                            }}
+                                        >
+                                            <PhoneCall className="text-white w-4 h-4" />
+                                        </motion.div>
                                     ) : (
-                                        <Warehouse className="text-white w-4 h-4" />
+                                        // ⚫ Empty → floating Z animation
+                                        <div className="flex items-center justify-center text-white relative scale-[1.6]">
+                                            <motion.span
+                                                custom={0}
+                                                animate="animate"
+                                                variants={zzzFloat}
+                                                className="absolute text-[16px] font-extrabold"
+                                            >
+                                                Z
+                                            </motion.span>
+                                            <motion.span
+                                                custom={0.8}
+                                                animate="animate"
+                                                variants={zzzFloat}
+                                                className="absolute text-[13px] font-bold top-2"
+                                            >
+                                                z
+                                            </motion.span>
+                                            <motion.span
+                                                custom={1.6}
+                                                animate="animate"
+                                                variants={zzzFloat}
+                                                className="absolute text-[11px] font-semibold top-4"
+                                            >
+                                                z
+                                            </motion.span>
+                                        </div>
                                     )}
                                 </div>
                                 <p className="font-semibold text-gray-800 text-sm">{area.name}</p>
                             </div>
 
-                            <Badge
-                                variant={area.status === "Empty" ? "outline" : "default"}
-                                className={`text-[10px] px-2 py-0.5 ${getBadgeStyle(area.status)}`}
+                            <motion.div
+                                animate={
+                                    area.status === "Calling"
+                                        ? { y: [0, -2, 0] } // badge bounce for calling
+                                        : {}
+                                }
+                                transition={{ duration: 1.2, repeat: Infinity }}
                             >
-                                {area.status}
-                            </Badge>
+                                <Badge
+                                    variant={area.status === "Empty" ? "outline" : "default"}
+                                    className={`text-[10px] px-2 py-0.5 ${getBadgeStyle(area.status)}`}
+                                >
+                                    {area.status}
+                                </Badge>
+                            </motion.div>
                         </div>
 
-                        {/* Body: Job info */}
+                        {/* Body: Job Info */}
                         <div className="mt-2 text-xs leading-tight">
                             {area.status === "Occupied" || area.status === "Calling" ? (
                                 <>
@@ -103,7 +153,7 @@ export function StagingStatusCard() {
                                 <p className="text-gray-500 italic">No job assigned</p>
                             )}
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

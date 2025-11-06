@@ -1,5 +1,6 @@
 // src/components/app-sidebar.tsx
 import {
+  Ban,
   Box,
   Calendar,
   ChartLine,
@@ -57,13 +58,13 @@ const navStructure = [
   {
     title: "Analytics",
     items: [
-      { title: "Overview", path: "/example", icon: ChartLine },
+      { title: "Overview", path: "/", icon: ChartLine },
     ],
   },
   {
     title: "Database",
     items: [
-      { title: "Tables", path: "/example", icon: Sheet },
+      { title: "Tables", path: "/", icon: Sheet },
     ],
   },
   {
@@ -74,7 +75,11 @@ const navStructure = [
   },
   {
     title: "System",
-    items: [{ title: "Settings", path: "#", icon: Settings }],
+    items: [
+      { title: "Error Page", path: "error", icon: Ban },
+      { title: "Settings", path: "#", icon: Settings }
+
+    ],
   },
 ];
 

@@ -26,7 +26,7 @@ export default function BookingCalendarPage() {
 
     return (
         <div className="p-4">
-            <h2 className="text-lg font-bold mb-4">Booking Calendar (Prototype)</h2>
+            <h2 className="text-lg font-bold mb-4">Booking Calendar </h2>
 
             <div className="rounded-lg border border-gray-200 shadow-sm bg-white p-4">
                 <Calendar
