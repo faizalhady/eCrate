@@ -6,10 +6,10 @@ import { Package, PhoneCall } from "lucide-react";
    Placeholder Staging Area Data
 ---------------------------------------------------*/
 const stagingAreas = [
-    { id: 1, name: "Staging Area A", status: "Occupied", jobId: "JOB-7841", operator: "Faiz Ahmad" },
-    { id: 2, name: "Staging Area B", status: "Calling", jobId: "JOB-7850", operator: "Ali Hassan" },
-    { id: 3, name: "Staging Area C", status: "Occupied", jobId: "JOB-7842", operator: "Siti Aminah" },
-    { id: 4, name: "Staging Area D", status: "Empty", jobId: null, operator: null },
+    { id: 1, name: "STAGING AREA A", status: "Occupied", jobId: "JOB-7841", operator: "Faiz Ahmad" },
+    { id: 4, name: "STAGING AREA B", status: "Empty", jobId: null, operator: null },
+    { id: 2, name: "STAGING AREA C", status: "Calling", jobId: "JOB-7850", operator: "Ali Hassan" },
+    { id: 3, name: "STAGING AREA D", status: "Occupied", jobId: "JOB-7842", operator: "Siti Aminah" },
 ];
 
 /* -------------------------------------------------

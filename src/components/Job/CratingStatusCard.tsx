@@ -6,10 +6,10 @@ import { Hammer, PhoneCall } from "lucide-react";
    Placeholder Crating Area Data
 ---------------------------------------------------*/
 const cratingAreas = [
-    { id: 1, name: "Crating Area A", status: "Occupied", jobId: "JOB-7901", operator: "Ahmad Rafi" },
-    { id: 2, name: "Crating Area B", status: "Calling", jobId: "JOB-7910", operator: "Amin Zakaria" },
-    { id: 3, name: "Crating Area C", status: "Occupied", jobId: "JOB-7902", operator: "Nur Aisyah" },
-    { id: 4, name: "Crating Area D", status: "Empty", jobId: null, operator: null },
+    { id: 1, name: "CRATING AREA A", status: "Occupied", jobId: "JOB-7901", operator: "Ahmad Rafi" },
+    { id: 2, name: "CRATING AREA B", status: "Calling", jobId: "JOB-7910", operator: "Amin Zakaria" },
+    { id: 3, name: "CRATING AREA C", status: "Occupied", jobId: "JOB-7902", operator: "Nur Aisyah" },
+    { id: 4, name: "CRATING AREA D", status: "Empty", jobId: null, operator: null },
 ];
 
 /* -------------------------------------------------

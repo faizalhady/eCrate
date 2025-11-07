@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 // Routes & pages
 import NotFoundPage from "@/pages/error/NotFoundPage"
 import { BookingCalendarRoute } from "./routes/BookingCalendarRoute"
+import { CalendarRoute } from "./routes/CalendarRoute"
+import { CratingSchedulerRoute } from "./routes/CratingSchedulerRoute"
 import { DashboardRoute } from "./routes/DashboardRoute"
 import { ExampleRoute } from "./routes/ExampleRoute"
 import { IPKGuidelineRoute } from "./routes/IPKGuidelineRoute"
@@ -19,7 +21,9 @@ const router = createBrowserRouter([
       DashboardRoute,
       ExampleRoute,
       IPKGuidelineRoute,
-      BookingCalendarRoute
+      BookingCalendarRoute,
+      CratingSchedulerRoute,
+      CalendarRoute,
     ],
   },
   {

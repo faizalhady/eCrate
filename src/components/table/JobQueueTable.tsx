@@ -1,7 +1,7 @@
 import { JobTrackingCard } from "@/components/Job/JobTrackingCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { CheckCircle2, Eye, Package, Truck, Warehouse } from "lucide-react";
 import { useState } from "react";
@@ -76,6 +76,11 @@ export function JobQueueTable() {
         <>
             {/* Table */}
             <Card className="w-full shadow-md">
+                <CardHeader className="pb-0">
+                    <CardTitle className="text-lg font-semibold text-gray-800">
+                        Recent Activities
+                    </CardTitle>
+                </CardHeader>
                 <CardContent className="p-0">
                     <table className="w-full text-[13px] border-separate border-spacing-0">
                         <thead>
