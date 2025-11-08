@@ -39,7 +39,8 @@ export default function AppLayout() {
         </header>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto p-4">
+        {/* <div className="flex-1 overflow-y-auto p-4"> */}
+        <div className="relative h-full overflow-visible">
           <Outlet />
         </div>
 

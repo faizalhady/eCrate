@@ -104,7 +104,7 @@ export default function CratingSchedulerPage() {
     }, []);
 
     return (
-        <div className="p-4 flex flex-col gap-4">
+        <div className="p-4 space-y-2">
             <Card className="shadow-sm border border-gray-200">
                 <CardHeader className="flex flex-row justify-between items-center pb-0">
                     <CardTitle className="text-lg font-semibold">

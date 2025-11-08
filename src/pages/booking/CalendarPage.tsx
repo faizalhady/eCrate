@@ -59,10 +59,10 @@ export default function CalendarPage() {
 
     return (
         <div className="p-4 space-y-2">
-            <h1 className="text-2xl font-bold">Crating Schedule Calendar</h1>
+            <h1 className="text-2xl font-bold">Calendar Page</h1>
 
             {/* ✅ style on wrapper, not on component */}
-            <div style={{ height: "600px", borderRadius: "8px" }}>
+            <div style={{ height: "900px", borderRadius: "8px" }}>
                 <DayPilotCalendar
                     ref={calendarRef}
                     viewType="Week"

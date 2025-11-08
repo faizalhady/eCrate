@@ -3,7 +3,7 @@ import AuthLayout from "@/layouts/AuthLayout"
 import { Suspense } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
-// Routes & pages
+// Routes
 import NotFoundPage from "@/pages/error/NotFoundPage"
 import { BookingCalendarRoute } from "./routes/BookingCalendarRoute"
 import { CalendarRoute } from "./routes/CalendarRoute"
@@ -11,11 +11,12 @@ import { CratingSchedulerRoute } from "./routes/CratingSchedulerRoute"
 import { DashboardRoute } from "./routes/DashboardRoute"
 import { ExampleRoute } from "./routes/ExampleRoute"
 import { IPKGuidelineRoute } from "./routes/IPKGuidelineRoute"
+import { LoaderDemoRoute } from "./routes/LoaderDemoRoute"
+import { LoginRoute } from "./routes/LoginRoute"
 
-// Router setup
 const router = createBrowserRouter([
   {
-    path: "/", // main app routes
+    path: "/", // main application routes
     element: <AppLayout />,
     children: [
       DashboardRoute,
@@ -24,12 +25,14 @@ const router = createBrowserRouter([
       BookingCalendarRoute,
       CratingSchedulerRoute,
       CalendarRoute,
+      LoaderDemoRoute,
     ],
   },
   {
-    // 🔥 separate layout for all "auth" or "special" routes
+    // 🔐 Auth-related routes (no sidebar)
     element: <AuthLayout />,
     children: [
+      ...LoginRoute, // ✅ includes /login & /login2
       { path: "*", element: <NotFoundPage /> },
     ],
   },
