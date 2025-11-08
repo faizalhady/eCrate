@@ -6,6 +6,9 @@ export default function AuthLayout() {
       <div className="w-full max-w-md rounded-xl border bg-background p-6 shadow-sm">
         <Outlet />
       </div>
+
+      {/* ✅ Global toast for auth pages */}
+      {/* <Toaster richColors position="top-right" /> */}
     </div>
   )
 }

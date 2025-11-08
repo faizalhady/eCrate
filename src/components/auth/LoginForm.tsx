@@ -1,11 +1,12 @@
-import { Spinner } from "@/components/loader"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import { z } from "zod"
+import { Spinner } from "@/components/loader";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/store/useAuthStore"; // ✅ new
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email"),
@@ -19,6 +20,7 @@ interface LoginFormProps {
 
 export function LoginForm({ onSuccess }: LoginFormProps) {
     const [loading, setLoading] = useState(false)
+    const login = useAuthStore((s) => s.login) // ✅ from Zustand
 
     const form = useForm<LoginForm>({
         resolver: zodResolver(loginSchema),
@@ -27,12 +29,19 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
     const handleLogin = async (values: LoginForm) => {
         setLoading(true)
-        await new Promise((r) => setTimeout(r, 1500)) // simulate delay
+        await new Promise((r) => setTimeout(r, 1000)) // simulate delay
+
+        login(values.email)
+        toast.success(`Welcome back, ${values.email}!`)
+
         setLoading(false)
-        toast.success("Welcome back!")
-        console.log("✅ Login:", values)
-        onSuccess?.()
+
+        // ✅ Wait 300ms before navigating, so toast shows up first
+        setTimeout(() => {
+            onSuccess?.()
+        }, 300)
     }
+
 
     return (
         <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-4">
@@ -69,7 +78,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
                 className="w-full flex items-center justify-center gap-2"
                 disabled={loading}
             >
-                {loading ? <Spinner className="text-white" /> : "Login"}
+                {loading ? <Spinner /> : "Login"}
             </Button>
         </form>
     )

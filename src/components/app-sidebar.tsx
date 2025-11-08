@@ -20,6 +20,7 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -30,6 +31,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { SidebarHeaderTitle } from "./SidebarHeaderTitle";
+import { NavUser } from "./nav-user";
 
 // -------------------------------------------------------------
 // NAVIGATION STRUCTURE — grouped by category (no parent icons)
@@ -152,6 +154,10 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
           </Collapsible>
         ))}
       </SidebarContent>
+
+      <SidebarFooter>
+        <NavUser />
+      </SidebarFooter>
 
       <SidebarRail />
     </Sidebar>
