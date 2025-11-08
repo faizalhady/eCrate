@@ -18,7 +18,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { useAuthStore } from "@/store/useAuthStore"
+import { useAuthStore } from "@/store/authStore"
 import {
     BadgeCheck,
     Bell,

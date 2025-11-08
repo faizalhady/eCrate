@@ -1,7 +1,4 @@
 import { CratingStatusCard } from "@/components/Job/CratingStatusCard";
-import { ScheduleCard } from "@/components/Job/ScheduleCard";
-import { StagingStatusCard } from "@/components/Job/StagingStatusCard";
-import { JobQueueTable } from "@/components/table/JobQueueTable";
 
 export default function DashboardPage() {
   return (
@@ -9,20 +6,20 @@ export default function DashboardPage() {
       {/* Top Section */}
 
       <div className="grid md:grid-cols-1 gap-2">
-        <StagingStatusCard />
+        {/* <StagingStatusCard /> */}
         <CratingStatusCard />
         {/* <JobQueueTable /> */}
       </div>
-      <div className="grid md:grid-cols-3 gap-2">
+      <div className="grid md:grid-cols-1 gap-2">
         {/* 🧾 Table takes 2 of 3 columns */}
-        <div className="md:col-span-2">
+        {/* <div className="md:col-span-2">
           <JobQueueTable />
-        </div>
+        </div> */}
 
         {/* 📦 Summary Card takes 1 column */}
-        <div className="md:col-span-1">
+        {/* <div className="md:col-span-1">
           <ScheduleCard />
-        </div>
+        </div> */}
       </div>
 
       {/* Middle Section */}

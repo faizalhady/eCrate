@@ -1,20 +1,26 @@
+// src/store/authStore.ts
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
+interface User {
+    email: string
+    name: string
+}
+
 interface AuthState {
-    user: { email: string } | null
     isAuthenticated: boolean
-    login: (email: string) => void
+    user: User | null
+    login: (user: User) => void
     logout: () => void
 }
 
 export const useAuthStore = create<AuthState>()(
     persist(
         (set) => ({
-            user: null,
             isAuthenticated: false,
-            login: (email) => set({ user: { email }, isAuthenticated: true }),
-            logout: () => set({ user: null, isAuthenticated: false }),
+            user: null,
+            login: (user) => set({ isAuthenticated: true, user }), // ✅ now takes an object
+            logout: () => set({ isAuthenticated: false, user: null }),
         }),
         { name: "auth-storage" }
     )

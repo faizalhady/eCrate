@@ -1,20 +1,17 @@
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { LoginDialog } from "./LoginDialog"
+import { useNavigate } from "react-router-dom"
 
 export function LoginButton() {
-    const [open, setOpen] = useState(false)
+    const navigate = useNavigate()
 
     return (
         <div className="w-full px-2 pb-3">
             <Button
-                onClick={() => setOpen(true)}
+                onClick={() => navigate("/login")}
                 className="w-full justify-center font-medium rounded-lg"
             >
                 Login
             </Button>
-
-            <LoginDialog open={open} onOpenChange={setOpen} />
         </div>
     )
 }

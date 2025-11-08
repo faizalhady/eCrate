@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       IPKGuidelineRoute,
       BookingCalendarRoute,
       CratingSchedulerRoute,
-      CalendarRoute,
+      CalendarRoute, // ✅ still here, but already protected internally
       LoaderDemoRoute,
     ],
   },
@@ -37,6 +37,7 @@ const router = createBrowserRouter([
     ],
   },
 ])
+
 
 export default function App() {
   return (
