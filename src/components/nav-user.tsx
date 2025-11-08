@@ -18,6 +18,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
+import { isProtectedPath } from "@/lib/protectedPaths"
 import { useAuthStore } from "@/store/authStore"
 import {
     BadgeCheck,
@@ -27,11 +28,15 @@ import {
     LogOut,
     Sparkles,
 } from "lucide-react"
+import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function NavUser() {
-    const { user, isAuthenticated, logout } = useAuthStore()
+    const { user, isAuthenticated } = useAuthStore()
     const { isMobile } = useSidebar()
+    const navigate = useNavigate()
+    const location = useLocation() // ✅ get current path
+    const logout = useAuthStore((s) => s.logout)
 
     // ✅ prevent crash even if Zustand is still loading
     const email = user?.email ?? ""
@@ -39,10 +44,17 @@ export function NavUser() {
     const firstLetter = email ? email.charAt(0).toUpperCase() : "?"
 
     const handleLogout = () => {
-        logout()
-        toast.info("Logged out successfully")
-    }
+        // ✅ Redirect only if currently on a protected path
+        if (isProtectedPath(location.pathname)) {
+            navigate("/", { replace: true })
+        }
 
+        // ✅ Then clear auth state (slight delay to avoid race)
+        setTimeout(() => {
+            logout()
+            toast.info("Logged out successfully")
+        }, 100)
+    }
     // ✅ Not logged in → show login button
     if (!isAuthenticated || !email) {
         return (
