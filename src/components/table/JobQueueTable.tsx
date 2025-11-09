@@ -75,16 +75,17 @@ export function JobQueueTable() {
     return (
         <>
             {/* Table */}
-            <Card className="w-full shadow-md">
-                <CardHeader className="pb-0">
+            <Card className="w-full shadow-none border-none bg-transparent">
+                <CardHeader className="pb-0 px-3">
                     <CardTitle className="text-lg font-semibold text-gray-800">
                         Recent Activities
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="p-0">
-                    <table className="w-full text-[13px] border-separate border-spacing-0">
+
+                <CardContent className="pt-0 px-3 pb-3">
+                    <table className="w-full text-[13px] border-collapse">
                         <thead>
-                            <tr className="bg-gray-50 text-gray-700 border-b text-xs">
+                            <tr className="text-gray-700 text-xs bg-gray-50">
                                 <th className="text-left px-3 py-2 font-medium">Job ID</th>
                                 <th className="text-left px-3 py-2 font-medium">Type</th>
                                 <th className="text-left px-3 py-2 font-medium">Area</th>
@@ -99,10 +100,13 @@ export function JobQueueTable() {
                         <tbody>
                             {jobQueue.map((job, index) => (
                                 <tr
-                                    key={job.id}
-                                    className={`border-t ${index % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-gray-100 transition`}
+                                    key={job.id + index}
+                                    className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                        } hover:bg-gray-100 transition`}
                                 >
-                                    <td className="px-3 py-2 font-medium text-gray-800">{job.id}</td>
+                                    <td className="px-3 py-2 font-medium text-gray-800">
+                                        {job.id}
+                                    </td>
 
                                     <td className="px-3 py-2 text-gray-700">
                                         <div className="flex items-center gap-2">
@@ -118,13 +122,14 @@ export function JobQueueTable() {
 
                                     <td className="px-3 py-2">
                                         <Badge
-                                            className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${getBadgeStyle(job.status)}`}
+                                            className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${getBadgeStyle(
+                                                job.status
+                                            )}`}
                                         >
                                             {job.status}
                                         </Badge>
                                     </td>
 
-                                    {/* ✅ Action column */}
                                     <td className="px-3 py-2 text-center">
                                         <Button
                                             size="icon"

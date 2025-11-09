@@ -21,7 +21,7 @@ export default function AppLayout() {
   const navigate = useNavigate()
 
   const handleCreateBooking = () => {
-    navigate("/booking/new") // ✅ Adjust target route as needed
+    navigate("/booking") // ✅ Adjust target route as needed
   }
 
   return (
@@ -49,11 +49,11 @@ export default function AppLayout() {
           </div>
 
           {/* Right: Create Booking Button */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mr-2">
             <Button
               onClick={handleCreateBooking}
               size="sm"
-              className="flex items-center gap-2 font-medium"
+              className="flex items-center gap-2 font-medium  bg-blue-600 hover:bg-blue-700 "
             >
               <Plus className="h-4 w-4" />
               Create Booking
@@ -62,7 +62,7 @@ export default function AppLayout() {
         </header>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-0">
           {/* <div className="relative h-full overflow-visible"> */}
           <Outlet />
         </div>

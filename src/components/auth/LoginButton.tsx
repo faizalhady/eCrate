@@ -8,7 +8,7 @@ export function LoginButton() {
         <div className="w-full px-2 pb-3">
             <Button
                 onClick={() => navigate("/login")}
-                className="w-full justify-center font-medium rounded-lg"
+                className="w-full justify-center font-medium rounded-lg  bg-blue-600 hover:bg-blue-700 "
             >
                 Login
             </Button>

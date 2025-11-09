@@ -9,22 +9,24 @@ const todayJobs = [
     { id: 4, time: "01:00 PM", workcell: "FORTIVE", staging: "Area B" },
     { id: 5, time: "03:20 PM", workcell: "ILLUMINA", staging: "Area E" },
     { id: 6, time: "05:00 PM", workcell: "SURPLUS", staging: "Area F" },
+    { id: 6, time: "05:00 PM", workcell: "SURPLUS", staging: "Area F" },
 ];
 
 export function ScheduleCard() {
     const navigate = useNavigate();
 
     return (
-        <Card className="w-full shadow-md">
+        <Card className="w-full h-full shadow-md">
             {/* Main Title */}
-            <CardHeader className="pb-0">
+            <CardHeader className="pb-0 flex justify-center">
                 <CardTitle className="text-xl font-semibold text-gray-800">
                     Queue
                 </CardTitle>
             </CardHeader>
 
+
             {/* Subheader - Today with arrows */}
-            <div className="flex items-center justify-between px-6 pt-2 pb-3">
+            <div className="flex items-center justify-between px-6 pt-0 pb-0">
                 <button className="p-2 hover:bg-gray-100 rounded-md transition">
                     <ChevronLeft size={18} />
                 </button>
