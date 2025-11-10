@@ -126,9 +126,9 @@ export function JobSummaryCard() {
                 <p className="text-[12px] text-gray-600">
                     Last updated: <span className="font-medium text-gray-800">07 Nov 2025, 03:45 PM</span>
                 </p>
-                <Badge className="bg-blue-600 text-white text-[11px] px-2 py-0.5 rounded-sm">
+                {/* <Badge className="bg-blue-600 text-white text-[11px] px-2 py-0.5 rounded-sm">
                     In Progress
-                </Badge>
+                </Badge> */}
             </div>
         </Card>
     )

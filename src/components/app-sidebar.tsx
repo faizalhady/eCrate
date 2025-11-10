@@ -1,4 +1,5 @@
-// src/components/app-sidebar.tsx
+"use client"
+
 import {
   Ban,
   Box,
@@ -7,16 +8,16 @@ import {
   ChevronRight,
   Settings,
   Sheet,
-  Waypoints
-} from "lucide-react";
-import * as React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+  Waypoints,
+} from "lucide-react"
+import * as React from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from "@/components/ui/collapsible"
 import {
   Sidebar,
   SidebarContent,
@@ -29,90 +30,62 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar";
-import { SidebarHeaderTitle } from "./SidebarHeaderTitle";
-import { NavUser } from "./nav-user";
+} from "@/components/ui/sidebar"
+import { SidebarHeaderTitle } from "./SidebarHeaderTitle"
+import { NavUser } from "./nav-user"
 
 // -------------------------------------------------------------
-// NAVIGATION STRUCTURE — grouped by category (no parent icons)
+// NAVIGATION STRUCTURE
 // -------------------------------------------------------------
 const navStructure = [
   {
     title: "Main",
     items: [
-      // { title: "Dashboard", path: "/", icon: Home },
       { title: "Dashboard", path: "/", icon: Box },
       { title: "Schedule / Booking", path: "/booking", icon: Calendar },
       { title: "Schedule / Booking 2", path: "/calendar", icon: Calendar },
     ],
-
   },
-  // {
-  //   title: "API Testing",
-  //   items: [
-  //     { title: "Crate Test", path: "/crate-test", icon: Box },
-  //     { title: "History Test", path: "/history-test", icon: History },
-  //     { title: "Log Test", path: "/log-test", icon: Database },
-  //     { title: "Service Test", path: "/service-test", icon: Server },
-  //     { title: "Data Test", path: "/data-test", icon: FileCog },
-  //     { title: "Auth Test", path: "/auth-test", icon: KeyRound },
-  //   ],
-  // },
   {
     title: "Analytics",
-    items: [
-      { title: "Overview", path: "/", icon: ChartLine },
-    ],
+    items: [{ title: "Overview", path: "/", icon: ChartLine }],
   },
   {
     title: "Database",
-    items: [
-      { title: "Tables", path: "/", icon: Sheet },
-    ],
+    items: [{ title: "Tables", path: "/", icon: Sheet }],
   },
   {
     title: "API Testing",
-    items: [
-      { title: "Example Api", path: "/example", icon: Waypoints },
-    ],
+    items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
   },
   {
     title: "System",
     items: [
       { title: "Error Page", path: "error", icon: Ban },
-      { title: "Settings", path: "#", icon: Settings }
-
+      { title: "Settings", path: "#", icon: Settings },
     ],
   },
-];
+]
 
 // -------------------------------------------------------------
 // SIDEBAR COMPONENT
 // -------------------------------------------------------------
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   return (
-    <Sidebar {...props}>
+    <Sidebar collapsible="icon" {...props}>
       {/* HEADER */}
       <SidebarHeader>
-        {/* <VersionSwitcher versions={["1.0.1", "2.0.0"]} defaultVersion="1.0.1" /> */}
         <SidebarHeaderTitle />
-        {/* <SearchForm /> */}
       </SidebarHeader>
 
-      {/* SIDEBAR CONTENT */}
+      {/* CONTENT */}
       <SidebarContent className="gap-0">
         {navStructure.map((section) => (
-          <Collapsible
-            key={section.title}
-            title={section.title}
-            defaultOpen
-            className="group/collapsible"
-          >
+          <Collapsible key={section.title} defaultOpen className="group/collapsible">
             <SidebarGroup>
-              {/* GROUP TITLE */}
               <SidebarGroupLabel
                 asChild
                 className="group/label text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
@@ -123,29 +96,26 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 </CollapsibleTrigger>
               </SidebarGroupLabel>
 
-              {/* CHILD ITEMS */}
               <CollapsibleContent>
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {section.items.map((item) => {
-                      const isActive = location.pathname === item.path;
+                      const isActive = location.pathname === item.path
                       return (
                         <SidebarMenuItem key={item.title}>
                           <SidebarMenuButton
                             asChild
                             isActive={isActive}
-                            onClick={() =>
-                              item.path !== "#" ? navigate(item.path) : null
-                            }
-                            className="pl-6" // 👈 Slight indent for hierarchy
+                            onClick={() => item.path !== "#" && navigate(item.path)}
+                            className="pl-6"
                           >
-                            <button className="flex w-full items-center gap-2 text-left">
+                            <button className="flex w-full items-center gap-2 text-left cursor-pointer">
                               <item.icon className="h-4 w-4 opacity-80" />
                               <span>{item.title}</span>
                             </button>
                           </SidebarMenuButton>
                         </SidebarMenuItem>
-                      );
+                      )
                     })}
                   </SidebarMenu>
                 </SidebarGroupContent>
@@ -155,11 +125,12 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
 
+      {/* FOOTER */}
       <SidebarFooter>
         <NavUser />
       </SidebarFooter>
 
       <SidebarRail />
     </Sidebar>
-  );
+  )
 }

@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
+  SidebarProvider
 } from "@/components/ui/sidebar"
 import { Plus } from "lucide-react"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
@@ -32,10 +31,10 @@ export default function AppLayout() {
       {/* Main inset area */}
       <SidebarInset className="flex flex-col h-screen">
         {/* Header */}
-        <header className="bg-background flex h-16 shrink-0 items-center justify-between border-b px-4">
+        <header className="flex h-12 shrink-0 items-center justify-between px-4  bg-gray-50">
           {/* Left: Sidebar + Breadcrumb */}
           <div className="flex items-center gap-2">
-            <SidebarTrigger className="-ml-1" />
+            {/* <SidebarTrigger className="-ml-1" /> */}
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
@@ -57,6 +56,14 @@ export default function AppLayout() {
             >
               <Plus className="h-4 w-4" />
               Create Booking
+            </Button>
+            <Button
+              onClick={handleCreateBooking}
+              size="sm"
+              className="flex items-center gap-2 font-medium  bg-blue-600 hover:bg-blue-700 "
+            >
+              {/* <Plus className="h-4 w-4" /> */}
+              Log In
             </Button>
           </div>
         </header>

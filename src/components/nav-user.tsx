@@ -1,8 +1,10 @@
-// src/components/nav-user.tsx
 "use client"
 
-import { LoginButton } from "@/components/auth/LoginButton"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -32,41 +34,26 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function NavUser() {
-    const { user, isAuthenticated } = useAuthStore()
+    const { user, isAuthenticated, logout } = useAuthStore()
     const { isMobile } = useSidebar()
     const navigate = useNavigate()
-    const location = useLocation() // ✅ get current path
-    const logout = useAuthStore((s) => s.logout)
+    const location = useLocation()
 
-    // ✅ prevent crash even if Zustand is still loading
-    const email = user?.email ?? ""
-    const username = email ? email.split("@")[0] : "Guest"
-    const firstLetter = email ? email.charAt(0).toUpperCase() : "?"
+    // Guard
+    if (!isAuthenticated || !user?.email) return null
+
+    const email = user.email
+    const username = email.split("@")[0]
+    const firstLetter = email.charAt(0).toUpperCase()
 
     const handleLogout = () => {
-        // ✅ Redirect only if currently on a protected path
-        if (isProtectedPath(location.pathname)) {
-            navigate("/", { replace: true })
-        }
-
-        // ✅ Then clear auth state (slight delay to avoid race)
+        if (isProtectedPath(location.pathname)) navigate("/", { replace: true })
         setTimeout(() => {
             logout()
             toast.info("Logged out successfully")
         }, 100)
     }
-    // ✅ Not logged in → show login button
-    if (!isAuthenticated || !email) {
-        return (
-            <SidebarMenu>
-                <SidebarMenuItem>
-                    <LoginButton />
-                </SidebarMenuItem>
-            </SidebarMenu>
-        )
-    }
 
-    // ✅ Logged in → show user dropdown
     return (
         <SidebarMenu>
             <SidebarMenuItem>
@@ -74,7 +61,7 @@ export function NavUser() {
                     <DropdownMenuTrigger asChild>
                         <SidebarMenuButton
                             size="lg"
-                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                            className="cursor-pointer data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
                             <Avatar className="h-8 w-8 rounded-lg">
                                 <AvatarImage src="/avatars/shadcn.jpg" alt={email} />
@@ -126,6 +113,7 @@ export function NavUser() {
                                 Notifications
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
+
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleLogout}>
                             <LogOut />
