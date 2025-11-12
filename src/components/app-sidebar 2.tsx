@@ -1,17 +1,33 @@
 "use client"
 
+import { NavUser } from "@/components/nav-user"
 import {
-  Ban,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar"
+import {
+  AudioWaveform,
+  BookOpen,
+  Bot,
   Box,
   Calendar,
-  ChartLine,
-  ChevronRight,
-  Settings,
-  Sheet,
-  Waypoints,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  SquareTerminal,
 } from "lucide-react"
 import * as React from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { SidebarHeaderTitle } from "./SidebarHeaderTitle"
+
+import {
+  ChevronRight
+} from "lucide-react"
 
 import {
   Collapsible,
@@ -19,24 +35,152 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
+  SidebarMenuItem
 } from "@/components/ui/sidebar"
-import { SidebarHeaderTitle } from "./SidebarHeaderTitle"
-import { NavUser } from "./nav-user"
+import {
+  Ban,
+  ChartLine,
+  Settings,
+  Sheet,
+  Waypoints,
+} from "lucide-react"
 
-// -------------------------------------------------------------
-// NAVIGATION STRUCTURE
-// -------------------------------------------------------------
+
+// This is sample data.
+const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
+  navMain: [
+    {
+      title: "Playground",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "History",
+          url: "#",
+        },
+        {
+          title: "Starred",
+          url: "#",
+        },
+        {
+          title: "Settings",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Models",
+      url: "#",
+      icon: Bot,
+      items: [
+        {
+          title: "Genesis",
+          url: "#",
+        },
+        {
+          title: "Explorer",
+          url: "#",
+        },
+        {
+          title: "Quantum",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Documentation",
+      url: "#",
+      items: [
+        {
+          title: "Introduction",
+          url: "#",
+          icon: BookOpen,
+        },
+        {
+          title: "Get Started",
+          url: "#",
+        },
+        {
+          title: "Tutorials",
+          url: "#",
+        },
+        {
+          title: "Changelog",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: "Design Engineering",
+      url: "#",
+      icon: Frame,
+    },
+    {
+      name: "Sales & Marketing",
+      url: "#",
+      icon: PieChart,
+    },
+    {
+      name: "Travel",
+      url: "#",
+      icon: Map,
+    },
+  ],
+}
+
 const navStructure = [
   {
     title: "Main",
@@ -67,21 +211,14 @@ const navStructure = [
   },
 ]
 
-// -------------------------------------------------------------
-// SIDEBAR COMPONENT
-// -------------------------------------------------------------
-export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
-  const navigate = useNavigate()
-  const location = useLocation()
 
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      {/* HEADER */}
       <SidebarHeader>
         <SidebarHeaderTitle />
       </SidebarHeader>
-
-      {/* CONTENT */}
       <SidebarContent className="gap-0">
         {navStructure.map((section) => (
           <Collapsible key={section.title} defaultOpen className="group/collapsible">
@@ -105,7 +242,6 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
                         <SidebarMenuItem key={item.title}>
                           <SidebarMenuButton
                             asChild
-                            tooltip={item.title}
                             isActive={isActive}
                             onClick={() => item.path !== "#" && navigate(item.path)}
                             className="pl-6"
@@ -125,12 +261,9 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
           </Collapsible>
         ))}
       </SidebarContent>
-
-      {/* FOOTER */}
       <SidebarFooter>
-        <NavUser />
+        <NavUser user={data.user} />
       </SidebarFooter>
-
       <SidebarRail />
     </Sidebar>
   )

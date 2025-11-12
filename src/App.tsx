@@ -10,6 +10,7 @@ import { CalendarRoute } from "./routes/CalendarRoute";
 import { CratingSchedulerRoute } from "./routes/CratingSchedulerRoute";
 import { DashboardRoute } from "./routes/DashboardRoute";
 import { ExampleRoute } from "./routes/ExampleRoute";
+import { GridRoutes } from "./routes/GridRoute";
 import { IPKGuidelineRoute } from "./routes/IPKGuidelineRoute";
 import { LoaderDemoRoute } from "./routes/LoaderDemoRoute";
 import { LoginRoute } from "./routes/LoginRoute";
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       CratingSchedulerRoute,
       CalendarRoute, // ✅ still here, but already protected internally
       LoaderDemoRoute,
+      ...GridRoutes,
     ],
   },
   {

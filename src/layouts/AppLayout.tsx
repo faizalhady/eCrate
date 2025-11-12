@@ -52,15 +52,15 @@ export default function AppLayout() {
             <Button
               onClick={handleCreateBooking}
               size="sm"
-              className="flex items-center gap-2 font-medium  bg-blue-600 hover:bg-blue-700 "
+              className="flex items-center gap-2 font-medium"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-5 w-4" />
               Create Booking
             </Button>
             <Button
               onClick={handleCreateBooking}
               size="sm"
-              className="flex items-center gap-2 font-medium  bg-blue-600 hover:bg-blue-700 "
+              className="flex items-center gap-2 font-medium "
             >
               {/* <Plus className="h-4 w-4" /> */}
               Log In

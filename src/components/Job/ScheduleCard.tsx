@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 
 const todayJobs = [
     { id: 1, time: "08:30 AM", workcell: "LAM RESEARCH", staging: "Area A" },
@@ -61,12 +62,12 @@ export function ScheduleCard() {
                 ))}
 
                 {/* Footer - Navigation Button */}
-                <button
+                <Button
                     onClick={() => navigate("/booking")}
-                    className="mt-2 w-full text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md py-2 transition"
+                    className="mt-2 w-full text-sm font-medium text-white rounded-md py-2 transition"
                 >
                     Full Schedule
-                </button>
+                </Button>
             </CardContent>
         </Card>
     );
