@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 
@@ -48,10 +47,10 @@ function SingleCalendar({ className, classNames, showOutsideDays = true, selecte
         day_hidden: "invisible",
         ...classNames,
       }}
-      components={{
-        IconLeft: ({ className, ...props }) => <ChevronLeft className={cn("h-4 w-4", className)} {...props} />,
-        IconRight: ({ className, ...props }) => <ChevronRight className={cn("h-4 w-4", className)} {...props} />,
-      }}
+      // components={{
+      //   IconLeft: ({ className, ...props }) => <ChevronLeft className={cn("h-4 w-4", className)} {...props} />,
+      //   IconRight: ({ className, ...props }) => <ChevronRight className={cn("h-4 w-4", className)} {...props} />,
+      // }}
       {...props}
     />
   );
@@ -59,3 +58,4 @@ function SingleCalendar({ className, classNames, showOutsideDays = true, selecte
 SingleCalendar.displayName = "Calendar";
 
 export { SingleCalendar };
+

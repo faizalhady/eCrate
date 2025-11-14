@@ -1,5 +1,4 @@
-import { CratingAreaCards } from "@/components/Area/CratingAreaCards"
-import { JobSummaryCard } from "@/components/Job/JobSummaryCard"
+import { CratingZones } from "@/components/Job/CratingZones"
 import { ScheduleCard } from "@/components/Job/ScheduleCard"
 import { JobQueueTable } from "@/components/table/JobQueueTable"
 import { Button } from "@/components/ui/button"
@@ -14,7 +13,7 @@ export default function DashboardPage() {
       {activeTab === "crating" ? (
         <>
           {/* 🔸 Buttons + Crating Cards */}
-          <div className="col-span-9 row-span-6 row-start-1 rounded-md p-2 overflow-hidden">
+          <div className="col-span-9 row-span-9 row-start-1 rounded-md p-2 overflow-hidden">
             <div className="h-full w-full bg-white rounded-md p-3 flex flex-col gap-3 shadow-sm">
               {/* Toolbar */}
               <div className="flex items-center justify-between">
@@ -35,17 +34,20 @@ export default function DashboardPage() {
 
               {/* Crating Area Cards */}
               <div className="flex-1 overflow-y-auto">
-                <CratingAreaCards />
+                <div className="grid grid-cols-2 xl:grid-cols-6 gap-0 grid-rows-4 auto-rows-[minmax(100px,_1fr)] h-full">
+                  <CratingZones />
+                </div>
               </div>
+
             </div>
           </div>
 
           {/* 🔸 Job Summary (bottom section) */}
-          <div className="col-span-9 row-span-3 row-start-7 rounded-md p-2 overflow-hidden">
+          {/* <div className="col-span-9 row-span-3 row-start-7 rounded-md p-2 overflow-hidden">
             <div className="h-full w-full bg-white rounded-md overflow-hidden shadow-sm">
               <JobSummaryCard />
             </div>
-          </div>
+          </div> */}
         </>
       ) : activeTab === "recent" ? (
         <div className="col-span-9 row-span-9 row-start-1 rounded-md p-2 overflow-hidden">
@@ -76,7 +78,7 @@ export default function DashboardPage() {
 
       ) : (
         /* 🔹 something view — full left column (rows 1–9) */
-        <div className="col-span-9 row-span-9 row-start-1 rounded-md p-2 overflow-hidden">
+        <div className="col-span-9 row-span-9 row-start-1 row-end-5 rounded-md p-2 overflow-hidden">
           <div className="h-full w-full bg-white rounded-md shadow-sm flex flex-col p-3 gap-3">
             {/* Toolbar */}
             <div className="flex items-center justify-between">
@@ -97,7 +99,6 @@ export default function DashboardPage() {
 
             {/* Placeholder */}
             <div className="flex-1 flex items-center justify-center text-gray-700 font-medium">
-              Something View
             </div>
           </div>
         </div>

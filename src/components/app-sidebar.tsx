@@ -42,8 +42,8 @@ const navStructure = [
     title: "Main",
     items: [
       { title: "Dashboard", path: "/", icon: Box },
-      { title: "Schedule / Booking", path: "/booking", icon: Calendar },
-      { title: "Schedule / Booking 2", path: "/calendar", icon: Calendar },
+      { title: "Schedule / Booking", path: "/calendar", icon: Calendar },
+      // { title: "Schedule / Booking 2", path: "/calendar", icon: Calendar },
     ],
   },
   {

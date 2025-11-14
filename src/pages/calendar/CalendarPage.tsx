@@ -7,14 +7,14 @@ import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 const users = [
-    { id: "1", name: "Faiz" },
-    { id: "2", name: "Hafizie" },
+    { id: "1", name: "Advantest" },
+    { id: "2", name: "Amat" },
 ];
 const events = [
     {
         id: "1",
-        title: "Packaging Review",
-        description: "Weekly packaging meeting",
+        title: "Confirmed Crating Zone A",
+        description: "Assembly A",
         startDate: new Date().toISOString(),
         endDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
         color: "blue",
@@ -22,8 +22,8 @@ const events = [
     },
     {
         id: "2",
-        title: "Crating Zone Maintenance",
-        description: "Check equipment availability",
+        title: "Booked For Crating Zone B",
+        description: "Assembly B",
         startDate: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
         endDate: new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString(),
         color: "green",

@@ -1,10 +1,9 @@
-import { areIntervalsOverlapping, format, parseISO } from "date-fns";
-import { Calendar, Clock, User } from "lucide-react";
-
 import { useCalendar } from "@/calendar/contexts/calendar-context";
+import { Calendar } from "@/components/ui/calendar";
+import { areIntervalsOverlapping, format, parseISO } from "date-fns";
+import { Calendar as CalendarIcon, Clock, User } from "lucide-react";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { SingleCalendar } from "@/components/ui/single-calendar";
 
 import { AddEventDialog } from "@/calendar/components/dialogs/add-event-dialog";
 import { DroppableTimeBlock } from "@/calendar/components/dnd/droppable-time-block";
@@ -138,8 +137,18 @@ export default function CalendarDayView({ singleDayEvents, multiDayEvents }: IPr
         </ScrollArea>
       </div>
 
-      <div className="hidden w-64 divide-y border-l md:block">
-        <SingleCalendar className="mx-auto w-fit" mode="single" selected={selectedDate} onSelect={setSelectedDate} initialFocus />
+
+      <div className="hidden w-70 divide-y border-0 md:block">
+        <div className="p-0"> {/* Add padding wrapper */}
+          <Calendar
+            mode="single"
+            selected={selectedDate}
+            onSelect={(date) => date && setSelectedDate(date)}
+            className="rounded-md border shadow-sm"
+            captionLayout="dropdown"
+          />
+        </div>
+
 
         <div className="flex-1 space-y-3">
           {currentEvents.length > 0 ? (
@@ -173,7 +182,7 @@ export default function CalendarDayView({ singleDayEvents, multiDayEvents }: IPr
                       )}
 
                       <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Calendar className="size-3.5" />
+                        <CalendarIcon className="size-3.5" />
                         <span className="text-sm">{format(new Date(), "MMM d, yyyy")}</span>
                       </div>
 
