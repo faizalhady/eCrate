@@ -57,6 +57,12 @@ function extractErrorMessage(error: unknown): string {
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
+      // 🔑 Only show error toast if this query explicitly opts-in
+      const meta = query.meta as { toastError?: boolean } | undefined
+      if (!meta?.toastError) {
+        return
+      }
+
       const message = extractErrorMessage(error)
       const title = getQueryMessage(query.queryKey, "error")
       showErrorToast(title, message)
@@ -65,26 +71,42 @@ export const queryClient = new QueryClient({
   }),
   mutationCache: new MutationCache({
     onError: (error, _vars, _ctx, mutation) => {
+      // 🔑 Only show error toast if this mutation opts-in
+      const meta = mutation.meta as { toastError?: boolean } | undefined
+      if (!meta?.toastError) {
+        return
+      }
+
       const message = extractErrorMessage(error)
       const title = getQueryMessage(mutation.options.mutationKey, "error")
       showErrorToast(title, message)
-      console.error("[QueryProvider] ❌ Mutation Error:", mutation.options.mutationKey, message)
+      console.error(
+        "[QueryProvider] ❌ Mutation Error:",
+        mutation.options.mutationKey,
+        message
+      )
     },
     onSuccess: (_data, _vars, _ctx, mutation) => {
+      // 🔑 Only show success toast if this mutation opts-in
+      const meta = mutation.meta as { toastSuccess?: boolean } | undefined
+      if (!meta?.toastSuccess) {
+        return
+      }
+
       const title = getQueryMessage(mutation.options.mutationKey, "success")
       showSuccessToast(title)
       devLog("QueryProvider", "✅ Mutation Success:", mutation.options.mutationKey)
-
     },
   }),
   defaultOptions: {
     queries: {
       retry: 1,
       refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 2, // 2 minutes
+      staleTime: 1000 * 60 * 2,
     },
   },
 })
+
 
 /* -------------------------------------------------
    Dev Cache Logger — Realtime State Monitor
@@ -120,7 +142,7 @@ function useQueryCacheLogger() {
    Provider Wrapper
 ---------------------------------------------------*/
 export function QueryProvider({ children }: { children: React.ReactNode }) {
-  useQueryCacheLogger()
+  // useQueryCacheLogger()
 
   return (
     <QueryClientProvider client={queryClient}>
