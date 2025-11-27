@@ -2,10 +2,12 @@ import { CratingZones } from "@/components/Job/CratingZones"
 import { ScheduleCard } from "@/components/Job/ScheduleCard"
 import { JobQueueTable } from "@/components/table/JobQueueTable"
 import { Button } from "@/components/ui/button"
+import { useSocketTest } from "@/hooks/usesocketTest"
 import { useState } from "react"
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<"crating" | "recent" | "something">("crating")
+  useSocketTest();
 
   return (
     <div className="h-full grid grid-cols-12 grid-rows-[auto_repeat(8,minmax(0,1fr))] gap-0 p-2 overflow-hidden bg-gray-50">

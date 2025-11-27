@@ -10,7 +10,7 @@ const todayJobs = [
     { id: 4, time: "01:00 PM", workcell: "FORTIVE", staging: "Area B" },
     { id: 5, time: "03:20 PM", workcell: "ILLUMINA", staging: "Area E" },
     { id: 6, time: "05:00 PM", workcell: "SURPLUS", staging: "Area F" },
-    { id: 6, time: "05:00 PM", workcell: "SURPLUS", staging: "Area F" },
+    { id: 7, time: "05:00 PM", workcell: "SURPLUS", staging: "Area F" },
 ];
 
 export function ScheduleCard() {
