@@ -22,7 +22,7 @@ export function YearViewDayCell({ day, date, events }: IProps) {
 
   const handleClick = () => {
     setSelectedDate(date);
-    push("/day-view");
+    push("day-view");
   };
 
   return (

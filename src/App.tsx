@@ -7,11 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Routes
 import NotFoundPage from "@/pages/error/NotFoundPage";
 import { CalendarRoute } from "./routes/CalendarRoute";
-import { CratingSchedulerRoute } from "./routes/CratingSchedulerRoute";
 import { DashboardRoute } from "./routes/DashboardRoute";
-import { ExampleRoute } from "./routes/ExampleRoute";
 import { GridRoutes } from "./routes/GridRoute";
-import { IPKGuidelineRoute } from "./routes/IPKGuidelineRoute";
 import { LoaderDemoRoute } from "./routes/LoaderDemoRoute";
 import { LoginRoute } from "./routes/LoginRoute";
 
@@ -21,9 +18,9 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       DashboardRoute,
-      ExampleRoute,
-      IPKGuidelineRoute,
-      CratingSchedulerRoute,
+      // ...ExampleRoute,
+      // IPKGuidelineRoute,
+      // CratingSchedulerRoute,
       CalendarRoute, // ✅ still here, but already protected internally
       LoaderDemoRoute,
       ...GridRoutes,

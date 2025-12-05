@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -17,17 +16,14 @@ export function ScheduleCard() {
     const navigate = useNavigate();
 
     return (
-        <Card className="w-full h-full shadow-md">
+        <div className="w-full h-full flex flex-col bg-white rounded-md shadow-sm p-3">
             {/* Main Title */}
-            <CardHeader className="pb-0 flex justify-center">
-                <CardTitle className="text-xl font-semibold text-gray-800">
-                    Queue
-                </CardTitle>
-            </CardHeader>
-
+            <div className="flex justify-center pb-1">
+                <h2 className="text-xl font-semibold text-gray-800">Queue</h2>
+            </div>
 
             {/* Subheader - Today with arrows */}
-            <div className="flex items-center justify-between px-6 pt-0 pb-0">
+            <div className="flex items-center justify-between px-3">
                 <button className="p-2 hover:bg-gray-100 rounded-md transition">
                     <ChevronLeft size={18} />
                 </button>
@@ -42,33 +38,30 @@ export function ScheduleCard() {
                 </button>
             </div>
 
-            {/* Body - Job Cards */}
-            <CardContent className="grid gap-3">
+            {/* Body - Job Items */}
+            <div className="grid gap-3 mt-3 flex-1 overflow-y-auto">
                 {todayJobs.map((job) => (
                     <div
                         key={job.id}
                         className="border border-gray-200 rounded-md p-3 flex items-center justify-between hover:shadow-sm transition"
                     >
                         <div>
-                            <p className="text-sm text-gray-700 font-medium">
-                                {job.workcell}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                                Staging: {job.staging}
-                            </p>
+                            <p className="text-sm text-gray-700 font-medium">{job.workcell}</p>
+                            <p className="text-xs text-gray-500">Staging: {job.staging}</p>
                         </div>
                         <p className="text-xs text-gray-600">{job.time}</p>
                     </div>
                 ))}
 
-                {/* Footer - Navigation Button */}
+                {/* Footer - Button */}
                 <Button
-                    onClick={() => navigate("/booking")}
+                    onClick={() => navigate("/calendar/agenda-view")}
                     className="mt-2 w-full text-sm font-medium text-white rounded-md py-2 transition"
                 >
                     Full Schedule
                 </Button>
-            </CardContent>
-        </Card>
+            </div>
+        </div>
     );
+
 }

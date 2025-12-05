@@ -9,7 +9,6 @@ import {
   QueryClientProvider,
   type QueryCacheNotifyEvent,
 } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import axios from "axios"
 import React, { useEffect } from "react"
 import { toast } from "sonner"
@@ -147,7 +146,7 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   )
 }

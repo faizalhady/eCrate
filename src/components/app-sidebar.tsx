@@ -7,8 +7,7 @@ import {
   ChartLine,
   ChevronRight,
   Settings,
-  Sheet,
-  Waypoints,
+  Sheet
 } from "lucide-react"
 import * as React from "react"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -54,10 +53,10 @@ const navStructure = [
     title: "Database",
     items: [{ title: "Tables", path: "/", icon: Sheet }],
   },
-  {
-    title: "API Testing",
-    items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
-  },
+  // {
+  //   title: "API Testing",
+  //   items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
+  // },
   {
     title: "System",
     items: [

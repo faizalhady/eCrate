@@ -1,5 +1,5 @@
 import { EventDetailsDialog } from "@/calendar/components/dialogs/event-details-dialog";
-import { AlertCircle, CheckCircle, Clock, Hammer, Package } from "lucide-react";
+import { Activity, AlertCircle, Box, CheckCircle, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type ZoneStatus = "idle" | "running" | "occupied" | "maintenance" | "completed";
@@ -22,9 +22,9 @@ const initialZones: CratingZone[] = [
     {
         id: "1",
         name: "Zone A",
-        status: "running",
+        status: "idle",
         currentOrder: "ORD-2024-1045",
-        operator: "ADVANTEST",
+        operator: "John Smith",
         startTime: "08:30 AM",
         estimatedCompletion: "11:45 AM",
         progress: 65,
@@ -35,9 +35,9 @@ const initialZones: CratingZone[] = [
     {
         id: "2",
         name: "Zone B",
-        status: "running",
+        status: "occupied",
         currentOrder: "ORD-2024-1044",
-        operator: "AMAT",
+        operator: "ADVANTEST",
         startTime: "09:15 AM",
         estimatedCompletion: "12:30 PM",
         progress: 40,
@@ -61,7 +61,7 @@ const initialZones: CratingZone[] = [
     {
         id: "4",
         name: "Zone D",
-        status: "completed",
+        status: "occupied",
         currentOrder: "ORD-2024-1043",
         operator: "AMAT",
         startTime: "07:00 AM",
@@ -71,35 +71,10 @@ const initialZones: CratingZone[] = [
         itemsTotal: 200,
         productName: "Plastic Molding Parts",
     },
-    {
-        id: "5",
-        name: "Zone E",
-        status: "idle",
-        currentOrder: null,
-        operator: null,
-        startTime: null,
-        estimatedCompletion: null,
-        progress: 0,
-        itemsCompleted: 0,
-        itemsTotal: 0,
-        productName: null,
-    },
-    {
-        id: "6",
-        name: "Zone F",
-        status: "completed",
-        currentOrder: "ORD-2024-1043",
-        operator: "ADVANTEST",
-        startTime: "07:00 AM",
-        estimatedCompletion: "10:30 AM",
-        progress: 100,
-        itemsCompleted: 200,
-        itemsTotal: 200,
-        productName: "Plastic Molding Parts",
-    },
+
 ];
 
-export function CratingZones() {
+export function HoldingZones() {
     const [zones, setZones] = useState<CratingZone[]>(initialZones);
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -148,7 +123,7 @@ export function CratingZones() {
                 return {
                     color: "bg-green-100 text-green-800 border-green-300",
                     bgColor: "bg-green-50",
-                    icon: Hammer,
+                    icon: Activity,
                     iconColor: "text-green-600",
                     label: "Running",
                     pulse: true,
@@ -157,7 +132,7 @@ export function CratingZones() {
                 return {
                     color: "bg-blue-100 text-blue-800 border-blue-300",
                     bgColor: "bg-blue-50",
-                    icon: Package,
+                    icon: Box,
                     iconColor: "text-blue-600",
                     label: "Occupied",
                     pulse: true,
@@ -198,17 +173,17 @@ export function CratingZones() {
                 const statusConfig = getStatusConfig(zone.status);
                 const StatusIcon = statusConfig.icon;
 
-                // Same mock data for all zones (only id is made unique)
+                // mock event for dialog
                 const mockEvent: IEvent = {
-                    id: `mock-${zone.id}`,
-                    title: "Crating Booking (Mock)",
-                    description: "This is a mock booking linked to this zone card.",
-                    color: "blue",
+                    id: `holding-${zone.id}`,
+                    title: `Holding Zone ${zone.name} (Mock)`,
+                    description: `This is mock data for ${zone.name}.`,
+                    color: "red",
                     startDate: new Date().toISOString(),
-                    endDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+                    endDate: new Date(Date.now() + 20 * 60000).toISOString(),
                     user: {
                         id: "mock-user",
-                        name: "Crating Operator",
+                        name: "Holding Operator",
                         picturePath: "",
                     },
                 };
@@ -244,29 +219,50 @@ export function CratingZones() {
                             </div>
 
                             {/* BODY */}
+                            {/* BODY */}
                             <div className="flex-1 flex flex-col items-center justify-center gap-2 min-h-0 text-[10px]">
-
-                                {/* IDLE ZONES */}
                                 {zone.status === "idle" ? (
                                     <>
-                                        <Clock className="h-5 w-5 text-gray-400" />
-                                        <p className="text-gray-500">Available</p>
+                                        <Clock className="h-8 w-8 text-gray-400" />
+                                        <p className="text-gray-500 text-[15px]">Available</p>
+                                    </>
+                                ) : zone.status === "occupied" ? (
+                                    <>
+                                        {/* MUCH BIGGER ICON */}
+                                        <Box className="h-12 w-12 text-blue-600" />
+
+                                        {/* BIGGER OPERATOR */}
+                                        {zone.operator && (
+                                            <p className="text-[13px] font-bold text-gray-800 text-center mt-1 leading-tight">
+                                                {zone.operator}
+                                            </p>
+                                        )}
+
+                                        {/* BIGGER ORDER NUMBER */}
+                                        {zone.currentOrder && (
+                                            <p className="text-[11px] text-gray-700 font-medium truncate w-full text-center leading-tight">
+                                                {zone.currentOrder}
+                                            </p>
+                                        )}
                                     </>
                                 ) : (
                                     <>
-                                        {/* MAIN ICON (based on status) */}
-                                        <StatusIcon className={`h-10 w-10 ${statusConfig.iconColor}`} />
-
-                                        {/* OPERATOR NAME */}
+                                        {/* BIGGER OPERATOR */}
                                         {zone.operator && (
                                             <p className="text-[13px] font-bold text-gray-800 text-center leading-tight">
                                                 {zone.operator}
                                             </p>
                                         )}
 
-                                        {/* CURRENT ORDER */}
+                                        {/* PROGRESS TEXT BIGGER */}
+                                        <p className="text-[11px] text-gray-500">Progress</p>
+
+                                        {/* BIGGER PERCENTAGE */}
+                                        <p className="text-xl font-bold leading-none">{zone.progress}%</p>
+
+                                        {/* BIGGER ORDER BELOW */}
                                         {zone.currentOrder && (
-                                            <p className="text-[11px] font-medium text-gray-700 truncate w-full text-center leading-tight">
+                                            <p className="text-[11px] text-gray-700 font-medium truncate w-full text-center leading-tight">
                                                 {zone.currentOrder}
                                             </p>
                                         )}
@@ -276,39 +272,29 @@ export function CratingZones() {
 
 
                             {/* FOOTER */}
-                            {/* FOOTER */}
-                            {zone.status !== "idle" && (
-                                <div className="mt-1.5 w-full flex flex-col items-center">
-
-                                    {/* PROGRESS PERCENT ABOVE BAR */}
-                                    <p className="text-[15px] font-semibold text-gray-700 mb-1">
-                                        {zone.progress}%
-                                    </p>
-
-                                    {/* PROGRESS BAR */}
+                            {zone.status !== "idle" && zone.status !== "occupied" && (
+                                <div className="mt-1.5">
                                     <div className="w-full bg-gray-200 rounded-full h-1">
                                         <div
                                             className={`
-                    h-full rounded-full 
-                    ${zone.status === "completed"
+                      h-full rounded-full 
+                      ${zone.status === "completed"
                                                     ? "bg-purple-600"
                                                     : zone.status === "running"
                                                         ? "bg-green-600"
                                                         : "bg-blue-600"}
-                `}
+                    `}
                                             style={{ width: `${zone.progress}%` }}
                                         />
                                     </div>
                                 </div>
                             )}
-
                         </div>
                     </EventDetailsDialog>
                 );
             })}
         </>
     );
-
 
 
 

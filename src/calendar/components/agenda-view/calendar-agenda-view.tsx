@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { endOfDay, format, isSameMonth, parseISO, startOfDay } from "date-fns";
 import { CalendarX2 } from "lucide-react";
-import { parseISO, format, endOfDay, startOfDay, isSameMonth } from "date-fns";
+import { useMemo } from "react";
 
 import { useCalendar } from "@/calendar/contexts/calendar-context";
 
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { AgendaDayGroup } from "@/calendar/components/agenda-view/agenda-day-group";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import type { IEvent } from "@/calendar/interfaces";
 
@@ -30,7 +30,7 @@ export function CalendarAgendaView({ singleDayEvents, multiDayEvents }: IProps) 
         allDates.set(dateKey, { date: startOfDay(eventDate), events: [], multiDayEvents: [] });
       }
 
-      allDates.get(dateKey)?.events.push(event);
+      allDates.get(dateKey)!.events.push(event);
     });
 
     multiDayEvents.forEach(event => {
@@ -48,8 +48,9 @@ export function CalendarAgendaView({ singleDayEvents, multiDayEvents }: IProps) 
             allDates.set(dateKey, { date: new Date(currentDate), events: [], multiDayEvents: [] });
           }
 
-          allDates.get(dateKey)?.multiDayEvents.push(event);
+          allDates.get(dateKey)!.multiDayEvents.push(event);
         }
+
         currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
       }
     });
@@ -60,21 +61,24 @@ export function CalendarAgendaView({ singleDayEvents, multiDayEvents }: IProps) 
   const hasAnyEvents = singleDayEvents.length > 0 || multiDayEvents.length > 0;
 
   return (
-    <div className="h-[800px]">
-      <ScrollArea className="h-full" type="always">
-        <div className="space-y-6 p-4">
-          {eventsByDay.map(dayGroup => (
-            <AgendaDayGroup key={format(dayGroup.date, "yyyy-MM-dd")} date={dayGroup.date} events={dayGroup.events} multiDayEvents={dayGroup.multiDayEvents} />
-          ))}
+    <ScrollArea className="h-full" type="always">
+      <div className="space-y-6 p-4">
+        {eventsByDay.map(dayGroup => (
+          <AgendaDayGroup
+            key={format(dayGroup.date, "yyyy-MM-dd")}
+            date={dayGroup.date}
+            events={dayGroup.events}
+            multiDayEvents={dayGroup.multiDayEvents}
+          />
+        ))}
 
-          {!hasAnyEvents && (
-            <div className="flex flex-col items-center justify-center gap-2 py-20 text-muted-foreground">
-              <CalendarX2 className="size-10" />
-              <p className="text-sm md:text-base">No events scheduled for the selected month</p>
-            </div>
-          )}
-        </div>
-      </ScrollArea>
-    </div>
+        {!hasAnyEvents && (
+          <div className="flex flex-col items-center justify-center gap-2 py-20 text-muted-foreground">
+            <CalendarX2 className="size-10" />
+            <p className="text-sm md:text-base">No events scheduled for the selected month</p>
+          </div>
+        )}
+      </div>
+    </ScrollArea>
   );
 }

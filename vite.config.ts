@@ -38,4 +38,7 @@ export default defineConfig({
   css: {
     devSourcemap: false,     // 🟢 disable CSS sourcemaps
   },
+  esbuild: {
+    logOverride: { "ts-error": "silent" }
+  }
 })

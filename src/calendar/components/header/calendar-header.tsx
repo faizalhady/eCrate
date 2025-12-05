@@ -1,12 +1,7 @@
 "use client";
 
 import {
-  CalendarRange,
-  Columns,
-  Grid2x2,
-  Grid3x3,
-  List,
-  Plus,
+  Plus
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -38,72 +33,64 @@ export function CalendarHeader({ view, events }: IProps) {
       <div className="flex flex-col items-center gap-1.5 sm:flex-row sm:justify-between">
         <div className="flex w-full items-center gap-1.5">
           <div className="inline-flex first:rounded-r-none last:rounded-l-none [&:not(:first-child):not(:last-child)]:rounded-none">
+
             {/* Day View */}
             <Button
               asChild
               aria-label="View by day"
-              size="icon"
+              size="sm"
               variant={view === "day" ? "default" : "outline"}
-              className="rounded-r-none [&_svg]:size-5"
+              className="rounded-r-none px-3"
             >
-              {/* ✅ Use React Router Link with relative path */}
-              <Link to="./day-view">
-                <List strokeWidth={1.8} />
-              </Link>
+              <Link to="./day-view">Day</Link>
             </Button>
 
             {/* Week View */}
             <Button
               asChild
               aria-label="View by week"
-              size="icon"
+              size="sm"
               variant={view === "week" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              className="-ml-px rounded-none px-3"
             >
-              <Link to="./week-view">
-                <Columns strokeWidth={1.8} />
-              </Link>
+              <Link to="./week-view">Week</Link>
             </Button>
 
             {/* Month View */}
             <Button
               asChild
               aria-label="View by month"
-              size="icon"
+              size="sm"
               variant={view === "month" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              className="-ml-px rounded-none px-3"
             >
-              <Link to="./month-view">
-                <Grid2x2 strokeWidth={1.8} />
-              </Link>
+              <Link to="./month-view">Month</Link>
             </Button>
 
             {/* Year View */}
             <Button
               asChild
               aria-label="View by year"
-              size="icon"
+              size="sm"
               variant={view === "year" ? "default" : "outline"}
-              className="-ml-px rounded-none [&_svg]:size-5"
+              className="-ml-px rounded-none px-3"
             >
-              <Link to="./year-view">
-                <Grid3x3 strokeWidth={1.8} />
-              </Link>
+              <Link to="./year-view">Year</Link>
             </Button>
 
             {/* Agenda View */}
             <Button
               asChild
               aria-label="View by agenda"
-              size="icon"
+              size="sm"
               variant={view === "agenda" ? "default" : "outline"}
-              className="-ml-px rounded-l-none [&_svg]:size-5"
+              className="-ml-px rounded-l-none px-3"
             >
-              <Link to="./agenda-view">
-                <CalendarRange strokeWidth={1.8} />
-              </Link>
+              <Link to="./agenda-view">Agenda</Link>
             </Button>
+
           </div>
+
 
           <UserSelect />
         </div>
