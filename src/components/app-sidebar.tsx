@@ -1,13 +1,9 @@
 "use client"
 
 import {
-  Ban,
   Box,
   Calendar,
-  ChartLine,
-  ChevronRight,
-  Settings,
-  Sheet
+  ChevronRight
 } from "lucide-react"
 import * as React from "react"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -42,28 +38,27 @@ const navStructure = [
     items: [
       { title: "Dashboard", path: "/", icon: Box },
       { title: "Schedule / Booking", path: "/calendar", icon: Calendar },
-      // { title: "Schedule / Booking 2", path: "/calendar", icon: Calendar },
     ],
   },
-  {
-    title: "Analytics",
-    items: [{ title: "Overview", path: "/", icon: ChartLine }],
-  },
-  {
-    title: "Database",
-    items: [{ title: "Tables", path: "/", icon: Sheet }],
-  },
+  // {
+  //   title: "Analytics",
+  //   items: [{ title: "Overview", path: "/", icon: ChartLine }],
+  // },
+  // {
+  //   title: "Database",
+  //   items: [{ title: "Tables", path: "/", icon: Sheet }],
+  // },
+  // {
+  //   title: "System",
+  //   items: [
+  //     { title: "Error Page", path: "error", icon: Ban },
+  //     { title: "Settings", path: "#", icon: Settings },
+  //   ],
+  // },
   // {
   //   title: "API Testing",
   //   items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
   // },
-  {
-    title: "System",
-    items: [
-      { title: "Error Page", path: "error", icon: Ban },
-      { title: "Settings", path: "#", icon: Settings },
-    ],
-  },
 ]
 
 // -------------------------------------------------------------

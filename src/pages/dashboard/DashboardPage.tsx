@@ -52,7 +52,7 @@ export default function DashboardPage() {
                 <h2 className="text-xl font-semibold tracking-wide mb-3">CRATING</h2>
 
                 {/* Content grid */}
-                <div className="flex-1 min-h-0 overflow-auto grid grid-cols-2 xl:grid-cols-3 gap-3">
+                <div className="flex-1 min-h-0 overflow-auto grid grid-cols-2 xl:grid-cols-3 gap-6">
                   <CratingZones />
                 </div>
               </div>
