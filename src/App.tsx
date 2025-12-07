@@ -1,8 +1,11 @@
-import { Toaster } from "@/components/ui/sonner"; // ✅ move here
+import { Toaster } from "@/components/ui/sonner";
 import AppLayout from "@/layouts/AppLayout";
 import AuthLayout from "@/layouts/AuthLayout";
 import { Suspense } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter
+} from "react-router-dom";
 
 // Routes
 import NotFoundPage from "@/pages/error/NotFoundPage";
@@ -10,40 +13,39 @@ import { CalendarRoute } from "./routes/CalendarRoute";
 import { DashboardRoute } from "./routes/DashboardRoute";
 import { LoginRoute } from "./routes/LoginRoute";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <AppLayout />,
+      children: [
+        DashboardRoute,
+        CalendarRoute,
+      ],
+    },
+    {
+      element: <AuthLayout />,
+      children: [
+        ...LoginRoute,
+        { path: "*", element: <NotFoundPage /> },
+      ],
+    },
+  ],
   {
-    path: "/CPS",
-    element: <AppLayout />,
-    children: [
-      DashboardRoute,
-      // ...ExampleRoute,
-      // IPKGuidelineRoute,
-      // CratingSchedulerRoute,
-      CalendarRoute, // ✅ still here, but already protected internally
-      // LoaderDemoRoute,
-      // ...GridRoutes,
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    children: [
-      ...LoginRoute,
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-],
-)
+    basename: "/CPS",   // <-- THIS IS THE CORRECT PLACE
+  }
+);
 
 
 export default function App() {
   return (
     <>
+      {/* ⬅️ THIS is what makes all URLs automatically start with /CPS */}
       <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
         <RouterProvider router={router} />
       </Suspense>
 
-      {/* ✅ Mounted once globally — persists across all routes */}
       <Toaster richColors position="top-right" />
     </>
-  )
+  );
 }

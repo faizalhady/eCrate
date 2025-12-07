@@ -16,7 +16,7 @@ export function ScheduleCard() {
     const navigate = useNavigate();
 
     return (
-        <div className="w-full h-full flex flex-col bg-white rounded-md shadow-sm p-3">
+        <div className="w-full h-full flex flex-col rounded-md shadow-sm p-3">
             {/* Main Title */}
             <div className="flex justify-center pb-1">
                 <h2 className="text-xl font-semibold text-gray-800">Queue</h2>
