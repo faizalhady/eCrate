@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: "/CPS/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -38,4 +39,7 @@ export default defineConfig({
   css: {
     devSourcemap: false,     // 🟢 disable CSS sourcemaps
   },
+  esbuild: {
+    logOverride: { "ts-error": "silent" }
+  }
 })

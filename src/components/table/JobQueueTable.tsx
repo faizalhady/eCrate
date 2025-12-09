@@ -11,17 +11,17 @@ import { useState } from "react";
 ---------------------------------------------------*/
 const jobQueue = [
     { id: "#7901", type: "Crating", area: "Crating Area A", date: "7 Nov 2025, 10:00 AM", status: "Calling", operator: "Bejayapak", workcell: "Advantest" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Bejayapak", workcell: "Amat" },
-    { id: "#7903", type: "Crating", area: "Crating Area C", date: "7 Nov 2025, 11:00 AM", status: "Done", operator: "Bejayapak", workcell: "Cohu" },
-    { id: "#7841", type: "Staging", area: "Staging Area A", date: "7 Nov 2025, 09:45 AM", status: "Calling", operator: "Ahmad Rafi", workcell: "Workcell" },
-    { id: "#7842", type: "Staging", area: "Staging Area B", date: "7 Nov 2025, 10:10 AM", status: "Occupied", operator: "Amin Zakaria", workcell: "Workcell" },
-    { id: "#8001", type: "Shipping", area: "Dock 01", date: "7 Nov 2025, 12:15 PM", status: "Shipped", operator: "Siti Aminah", workcell: "Workcell" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7902", type: "Crating", area: "Crating Area B", date: "7 Nov 2025, 10:30 AM", status: "Crating", operator: "Enapak", workcell: "Amat" },
+    { id: "#7903", type: "Crating", area: "Crating Area C", date: "7 Nov 2025, 11:00 AM", status: "Done", operator: "Awanpak", workcell: "Cohu" },
+    { id: "#7841", type: "Staging", area: "Staging Area A", date: "7 Nov 2025, 09:45 AM", status: "Calling", operator: "Awanpak", workcell: "Advantest" },
+    { id: "#7842", type: "Staging", area: "Staging Area B", date: "7 Nov 2025, 10:10 AM", status: "Occupied", operator: "Awanpak", workcell: "Advantest" },
+    { id: "#8001", type: "Shipping", area: "Dock 01", date: "7 Nov 2025, 12:15 PM", status: "Shipped", operator: "Awanpak", workcell: "Cohu" },
 ];
 
 /* -------------------------------------------------

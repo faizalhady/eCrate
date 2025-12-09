@@ -46,8 +46,7 @@ import {
   Ban,
   ChartLine,
   Settings,
-  Sheet,
-  Waypoints,
+  Sheet
 } from "lucide-react"
 
 
@@ -198,10 +197,10 @@ const navStructure = [
     title: "Database",
     items: [{ title: "Tables", path: "/", icon: Sheet }],
   },
-  {
-    title: "API Testing",
-    items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
-  },
+  // {
+  //   title: "API Testing",
+  //   items: [{ title: "Example Api", path: "/example", icon: Waypoints }],
+  // },
   {
     title: "System",
     items: [
